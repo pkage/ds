@@ -29,8 +29,6 @@ dynamic = ["version"]
 requires-python = ">=3.8"
 dependencies = [
   # app => version pinned exactly
-  # TODO 2024-10-31 @ py3.8 EOL: remove
-  "graphlib_backport==1.1.0; python_version < '3.9'",
   # TODO 2026-10-31 @ py3.10 EOL: remove
   "tomli==2.0.1; python_version < '3.11'",
 ]
@@ -60,7 +58,6 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
