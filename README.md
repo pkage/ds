@@ -205,6 +205,9 @@ Options:
   --pre, --post
     EXPERIMENTAL: Run tasks with pre- and post- names.
 
+  --sync-git-hooks
+    EXPERIMENTAL: Install git hooks into .git.
+
   <task>
     One or more tasks to run with task-specific arguments.
 
