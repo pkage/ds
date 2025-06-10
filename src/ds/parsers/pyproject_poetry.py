@@ -3,10 +3,13 @@
 # std
 import logging
 
+
 # pkg
+from . import ds_toml
 from . import cargo_toml
 from ..configs import Config
 from ..configs import Membership
+from ..git import Hooks
 from . import toml
 from ..searchers import get_key
 from ..symbols import KEY_MISSING
@@ -81,3 +84,7 @@ def parse_tasks(config: Config, key: str = "tool.poetry.scripts") -> Tasks:
         )
 
     return tasks
+
+
+def parse_hooks(config: Config, key: str = "tool.poetry.git-hooks") -> Hooks:
+    return ds_toml.parse_hooks(config, key=key)

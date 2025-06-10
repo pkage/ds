@@ -7,6 +7,7 @@ import logging
 from . import cargo_toml
 from ..configs import Config
 from ..configs import Membership
+from ..git import Hooks
 from . import toml
 from ..tasks import Tasks
 
@@ -36,3 +37,8 @@ def parse_workspace(config: Config, key: str = "tool.uv.workspace") -> Membershi
 def parse_tasks(config: Config) -> Tasks:
     """`uv` does not define tasks."""
     raise NotImplementedError("`uv` does not support tasks.")
+
+
+def parse_hooks(config: Config, key: str = "git-hooks") -> Hooks:
+    """`uv` does not define hooks."""
+    return {}

@@ -6,7 +6,9 @@ from pathlib import Path
 from typing import Any
 from typing import Dict
 
+
 # pkg
+from .git import Hooks
 from .tasks import Tasks
 from .searchers import GlobMatches
 
@@ -24,10 +26,13 @@ class Config:
     data: Dict[str, Any]
     """Configuration data."""
 
-    # `tasks` and `members` are loaded by tool-specific parsers
+    # `tasks`, `members`, and `hooks` are loaded by tool-specific parsers
 
     tasks: Tasks = dataclasses.field(default_factory=dict)
     """Task definitions."""
 
     members: Membership = dataclasses.field(default_factory=dict)
     """Workspace members mapped to `True` for active members."""
+
+    hooks: Hooks = dataclasses.field(default_factory=dict)
+    """Defined git hooks and their classes."""

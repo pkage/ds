@@ -51,6 +51,7 @@ def parse(path: Path, require_workspace: bool = False) -> Config:
             else:
                 msg = f"No tasks found in: {path}"
                 config.tasks = parser.parse_tasks(config)
+            config.hooks = parser.parse_hooks(config)
             return config
         except (NotImplementedError, KeyError, TypeError):
             raise LookupError(msg)

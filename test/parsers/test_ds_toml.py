@@ -25,6 +25,9 @@ PATH = Path("pyproject.toml")
 KEY = "tool.ds.scripts"
 """Default key."""
 
+HOOKS_KEY = "tool.ds.git-hooks"
+"""Default git hooks key."""
+
 TASK = Task(origin=PATH, origin_key=KEY)
 """Default task data."""
 
@@ -285,3 +288,6 @@ def test_bad_syntax() -> None:
     data = nest(KEY, {"a": False})
     with pytest.raises(TypeError):
         parse_tasks(Config(PATH, data))
+
+
+# def test_hook_loading() -> None: ...
