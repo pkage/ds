@@ -55,3 +55,7 @@ release = """
   git merge --no-ff --no-edit prod;
   git push
 """
+
+[tool.ds.git-hooks]
+
+pre-commit = ["lint"]

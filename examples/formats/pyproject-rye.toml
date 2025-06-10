@@ -26,3 +26,7 @@ lint = { chain = ["lint:black", "lint:flake8"] }
 serve = { call = "http.server" }
 help = { call = "builtins:help" }
 hello-world = { call = "builtins:print('Hello World!')" }
+
+[tool.rye.git-hooks]
+# run this command before a git commit
+pre-commit = ["lint"]
