@@ -12,7 +12,6 @@ import logging
 # pkg
 from ..configs import Config
 from ..configs import Membership
-from ..git import Hooks
 from . import toml
 from ..searchers import get_key
 from ..searchers import glob_paths
@@ -32,32 +31,6 @@ log = logging.getLogger(__name__)
 
 loads = toml.loads
 """Standard `toml` parser."""
-
-
-def parse_hooks(config: Config, key: str = "git-hooks") -> Hooks:
-    # we want this to be optional, so we will create a default (empty) hook set
-    hooks: Hooks = {}
-
-    data = get_key(config.data, key, KEY_MISSING)
-    if data is KEY_MISSING:
-        return hooks
-
-    # we're gonna recreate this dict from scratch so we can do type checking
-    for hook_name in data:
-        if not isinstance(data[hook_name], list):
-            raise ValueError(f"Hook {hook_name} must define a list of tasks.")
-
-        tasks: List[str] = []
-        for task_name in data[hook_name]:
-            if not isinstance(task_name, str):
-                raise ValueError(
-                    f"Hook {hook_name} must define a list of tasks as strings (got {type(task_name)})."
-                )
-            tasks.append(task_name)
-
-        hooks[hook_name] = tasks
-
-    return hooks
 
 
 def parse_workspace(config: Config, key: str = "workspace") -> Membership:

@@ -9,7 +9,6 @@ import logging
 # pkg
 from ..configs import Config
 from . import ds_toml
-from ..git import Hooks
 from ..configs import Membership
 from . import pyproject_pdm
 from . import pyproject_poetry
@@ -41,10 +40,6 @@ TASK_PARSERS: Dict[str, Callable[[Config, str], Tasks]] = {
 }
 """Locations of task parsers in `pyproject.toml`."""
 
-HOOK_PARSERS: Dict[str, Callable[[Config, str], Hooks]] = {
-    "tool.ds.hooks": ds_toml.parse_hooks
-}
-
 
 def parse_workspace(config: Config) -> Membership:
     """`pyproject.toml` workspaces are tool-specific."""
@@ -66,14 +61,3 @@ def parse_tasks(config: Config) -> Tasks:
         except (KeyError, NotImplementedError):
             continue
     raise KeyError(f"Missing tasks key in {config.path}")
-
-
-def parse_hooks(config: Config) -> Hooks:
-    """`pyproject.toml` tasks are tool-specific."""
-    for key, parser in HOOK_PARSERS.items():
-        log.debug(f"Trying to find {key} in {config.path}")
-        try:
-            return parser(config, key)
-        except (KeyError, NotImplementedError):
-            continue
-    raise KeyError(f"Missing hooks key in {config.path}")

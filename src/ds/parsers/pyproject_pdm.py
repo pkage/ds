@@ -5,13 +5,10 @@ from pathlib import Path
 from typing import Optional
 import logging
 
-
 # pkg
 from ..configs import Config
 from ..configs import Membership
 from . import toml
-from . import ds_toml
-from ..git import Hooks
 from ..searchers import get_key
 from ..searchers import glob_paths
 from ..symbols import KEY_MISSING
@@ -163,7 +160,3 @@ def parse_tasks(config: Config, key: str = "tool.pdm.scripts") -> Tasks:
     # Not Supported: `pdm` placeholder: https://pdm-project.org/latest/usage/scripts/#pdm-placeholder
 
     return tasks
-
-
-def parse_hooks(config: Config, key: str = "tool.pdm.git-hooks") -> Hooks:
-    return ds_toml.parse_hooks(config, key=key)

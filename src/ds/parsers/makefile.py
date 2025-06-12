@@ -10,7 +10,6 @@ import logging
 # pkg
 from ..configs import Config
 from . import ds_toml
-from ..git import Hooks
 from ..configs import Membership
 from ..symbols import SHELL_CONTINUE
 from ..symbols import starts
@@ -172,8 +171,3 @@ def loads(text: str, debug: bool = False) -> NestedDict:
 
     # print(result)
     return {"recipes": result}
-
-
-def parse_hooks(config: Config, key: str = "git-hooks") -> Hooks:
-    log.debug("Makefile does not support hooks.")
-    return {}

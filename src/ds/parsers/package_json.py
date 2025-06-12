@@ -6,13 +6,10 @@ from shlex import split
 import json
 import logging
 
-
 # pkg
-from .ds_toml import parse_hooks as parse_hooks_generic
 from ..configs import Config
 from ..configs import Membership
 from ..env import RE_ARGS
-from ..git import Hooks
 from ..searchers import get_key
 from ..searchers import glob_names
 from ..searchers import glob_paths
@@ -125,7 +122,3 @@ def parse_tasks(config: Config, key: str = "scripts") -> Tasks:
                 )
 
     return tasks
-
-
-def parse_hooks(config: Config, key: str = "git-hooks") -> Hooks:
-    return parse_hooks_generic(config, key=key)
