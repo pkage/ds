@@ -3,7 +3,3 @@
 [tool.poetry.scripts]
 # `poetry` only supports a `call` with no arguments.
 ds = "ds:main"
-
-[tool.poetry.git-hooks]
-# run this command before a git commit
-pre-commit = ["lint"]

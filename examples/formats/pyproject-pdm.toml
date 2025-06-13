@@ -74,8 +74,3 @@ post_compress = "echo 'Run AFTER the `compress` script'"
 pre_echo = "echo 'About to echo'"
 echo = "echo 'Running echo'"
 post_echo = "echo 'After echo'"
-
-
-[tool.pdm.git-hooks]
-# run this command before a git commit
-pre-commit = ["lint"]
