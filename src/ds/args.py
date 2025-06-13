@@ -96,7 +96,7 @@ Options:
     EXPERIMENTAL: Run top-level tasks in parallel.
 
   --sync-git-hooks
-    EXPERIMENTAL: Install git hooks into .git.
+    EXPERIMENTAL: Install tasks with git-hook- names as git hooks into .git.
 
   <task>
     One or more tasks to run with task-specific arguments.

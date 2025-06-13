@@ -206,7 +206,7 @@ Options:
     EXPERIMENTAL: Run tasks with pre- and post- names.
 
   --sync-git-hooks
-    EXPERIMENTAL: Install git hooks into .git.
+    EXPERIMENTAL: Install tasks with git-hook- names as git hooks into .git.
 
   <task>
     One or more tasks to run with task-specific arguments.
@@ -308,6 +308,7 @@ If you provide one or more `--workspace` options, `--cwd` is ignored and tasks a
 - Don't start a name with a plus (`+`) because that indicates [error suppression](#error-suppression).
 - Don't start a name with a hyphen (`-`) because that can make the task look like a [command-line argument](#command-line-arguments).
 - Don't end a task name with a colon (`:`) because we use that to pass [command-line arguments](#command-line-arguments)
+- Specify [git hooks](#git-hooks) by naming your task `git-hook-{git hook name}`
 
 ## Basic Task
 
@@ -580,6 +581,20 @@ build = ["prebuild", "echo 'build'"]
 ```
 
 <!--[[[end]]]-->
+
+## Git hooks
+
+You can specify git hooks by naming your tasks with the `git-hook-{git hook name}` convention:
+
+```toml
+[scripts]
+
+lint = "uvx ruff check"
+git-hook-pre-commit = ["lint"]
+```
+
+You can install the git hooks by running `ds` with the `--sync-git-hooks` parameter. Please note that if you have any tasks with the naming convention above, all other git hooks will be deleted and replaced with the exact set in your task definition. `ds` will warn you if the hooks in your configuration are out of sync with the ones in your directory.
+
 
 ## Not Supported: `call` Tasks
 
