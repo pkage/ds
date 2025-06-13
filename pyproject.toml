@@ -169,6 +169,4 @@ release.shell = """
   git push
 """
 
-[tool.ds.git-hooks]
-
-pre-commit = ["lint"]
+git-hook-pre-commit = ["lint"]
