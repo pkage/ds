@@ -593,7 +593,10 @@ lint = "uvx ruff check"
 git-hook-pre-commit = ["lint"]
 ```
 
-You can install the git hooks by running `ds` with the `--sync-git-hooks` parameter. Please note that all other git hooks will be deleted and replaced with the exact set in your task definition. `ds` will warn you if the hooks in your configuration are out of sync with the ones in your directory.
+
+You can install the git hooks by running `ds` with the `--sync-git-hooks` parameter.
+
+Arguments will be passed to these tasks from `git`, please refer to the [argument interpolation](#argument-interpolation) section as well as the [git hooks documentation](https://git-scm.com/docs/githooks). Please note that all other git hooks will be deleted and replaced with the exact set in your task definition. `ds` will warn you if the hooks in your configuration are out of sync with the ones in your directory.
 
 
 ## Not Supported: `call` Tasks
