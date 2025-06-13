@@ -67,7 +67,7 @@ def create_hook_template(task_name: str) -> str:
     script = f"""\
     #! /bin/bash
 
-    PATH="{os.getenv("PATH")}" {invocation} {GIT_HOOK_PREFIX}{task_name}
+    PATH="{os.getenv("PATH")}" {invocation} {GIT_HOOK_PREFIX}{task_name}: $@
     """
 
     return dedent(script).strip()
