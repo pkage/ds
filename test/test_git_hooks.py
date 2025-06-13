@@ -136,6 +136,18 @@ def _create_hook_dir(git_dir: Path) -> None:
     hook4.write_text(create_hook_template("pre-rebase"))
 
 
+def test_check_hooks_installed_notasks(tmp_path: Path) -> None:
+    # create some hooks
+    _create_hook_dir(tmp_path)
+
+    # and create some tasks
+    tasks: Tasks = {
+        "ls": parse_task("ls -la"),
+    }
+
+    assert validate_installed_hooks(tmp_path, tasks)
+
+
 def test_check_hooks_installed_wronglength(tmp_path: Path) -> None:
     # create some hooks
     _create_hook_dir(tmp_path)

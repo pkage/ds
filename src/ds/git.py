@@ -147,6 +147,10 @@ def validate_installed_hooks(git_dir: Path, tasks: Tasks) -> bool:
     installed_hooks = detect_installed_hooks(git_dir)
     target_hooks = create_list_of_hooks(tasks)
 
+    # early abort: if we haven't specified any hooks, none of this applies and we're good
+    if len(target_hooks) == 0:
+        return True
+
     # strategy: zip together detected and target hooks (sorted) and if we get a mismatch
     installed_hooks.sort()
     target_hooks.sort(key=lambda h: h[0])  # sort by filename
