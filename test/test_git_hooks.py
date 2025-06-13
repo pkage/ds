@@ -10,6 +10,7 @@ from ds.tasks import Tasks
 from ds.parsers.ds_toml import parse_task
 
 # pkg
+from ds.env import TempEnv
 from ds.git import (
     GIT_HOOK_PREFIX,
     ValidGitHookName,
@@ -76,9 +77,12 @@ def test_git_file_instead_of_dir(
 def test_git_create_hook_template() -> None:
     hook_name: ValidGitHookName = "pre-commit"
 
-    script_expect = f"#! /bin/bash\n\n{sys.argv[0]} {GIT_HOOK_PREFIX}{hook_name}"
+    script_expect = (
+        f'#! /bin/bash\n\nPATH="test" {sys.argv[0]} {GIT_HOOK_PREFIX}{hook_name}'
+    )
 
-    assert create_hook_template(hook_name) == script_expect
+    with TempEnv(PATH="test"):
+        assert create_hook_template(hook_name) == script_expect
 
 
 def test_installed_hook_extractor(tmp_path: Path) -> None:

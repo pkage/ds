@@ -4,6 +4,7 @@
 from pathlib import Path
 from textwrap import dedent
 from typing import Literal, Tuple, Union, List
+import os
 import sys
 import stat
 
@@ -66,7 +67,7 @@ def create_hook_template(task_name: str) -> str:
     script = f"""\
     #! /bin/bash
 
-    {invocation} {GIT_HOOK_PREFIX}{task_name}
+    PATH="{os.getenv("PATH")}" {invocation} {GIT_HOOK_PREFIX}{task_name}
     """
 
     return dedent(script).strip()
