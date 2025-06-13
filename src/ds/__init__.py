@@ -196,12 +196,8 @@ def main(argv: Optional[List[str]] = None) -> None:
             # first, if we're allowed to fix stuff then check if we can
             if args.sync_git_hooks:
                 # if we're out of sync, fix it and let the user know
-                if not validate_installed_hooks(git_dir, config.tasks):
-                    # ...then we check if we're allowed to fix
-                    force_install_hooks(git_dir, config.tasks)
-                    log.info("Synchronized git hooks.")
-                else:
-                    log.info("No git hook update necessary.")
+                force_install_hooks(git_dir, config.tasks)
+                log.info("Synchronized git hooks.")
             else:
                 # if we're out of sync, let the user know
                 if not validate_installed_hooks(git_dir, config.tasks):
