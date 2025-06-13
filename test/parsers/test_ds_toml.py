@@ -285,4 +285,3 @@ def test_bad_syntax() -> None:
     data = nest(KEY, {"a": False})
     with pytest.raises(TypeError):
         parse_tasks(Config(PATH, data))
-
