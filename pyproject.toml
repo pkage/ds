@@ -168,5 +168,3 @@ release.shell = """
   git merge --no-ff --no-edit prod;
   git push
 """
-
-git-hook-pre-commit = ["lint"]
